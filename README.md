@@ -7,7 +7,9 @@ The code renders a "Checkout" function that creates a *Client Object* upon insta
 
 It has two methods to __Add__ and __Remove__ Products for the Client, and the __total__ method should return the Checkout todal for the client based on available products and Client specific rules. 
 
-This is my interpretation of the request. Hope it is good. I dedicated only enough time to make it testable, clean, and escalable. 
+This is my interpretation of the request. Hope it is good. I dedicated only enough time to make it testable, clean and maintainable as indicated. 
+
+Test
 
 `$ yarn test`
 
