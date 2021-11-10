@@ -3,15 +3,19 @@ import Checkout from "./index"
 describe("Checkout Myer", () => {
     const rule = [
         {
-            client: "Axil",
-            product: "standout",
-            discountPrice: 299.99,
+            client: "Jora",
+            product: "premium",
+            productDiscountTarget: 4,
+            discountPrice: 379.99,
         },
     ]
 
     const checkout = new Checkout(rule)
     test("add() returns an Array", () => {
-        expect(checkout.add("standout")).toStrictEqual(["standout"])
+        checkout.add("standout")
+        checkout.add("standout")
+        checkout.add("standout")
+        expect(checkout.products.length).toEqual(3)
     })
 
     test("remove() returns an empty Array", () => {
@@ -20,5 +24,14 @@ describe("Checkout Myer", () => {
 
     test("total() return a number", () => {
         expect(typeof checkout.total()).toBe("number")
+    })
+
+    test("total()", () => {
+        checkout.add("premium")
+        checkout.add("premium")
+        checkout.add("premium")
+        checkout.add("premium")
+        checkout.add("premium")
+        expect(checkout.total()).toEqual(1519.96 + 379.99)
     })
 })

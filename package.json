@@ -2,7 +2,7 @@
     "name": "seek-coding-exercise",
     "version": "1.0.0",
     "description": "Coding exercise SEEK frontend Especialist",
-    "main": "index.js",
+    "main": "index.ts",
     "author": "Andres Hernandez <@andresdhn>",
     "license": "MIT",
     "scripts": {

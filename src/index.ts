@@ -40,29 +40,34 @@ class Checkout {
 export default Checkout
 
 const getTotal = (products: string[], rules: Rule[]): number => {
-    let prodCount = 0
+    // let prodCount = 0
+    let prodTotal = products.length
     let total = 0
 
     products.forEach((prod: string) => {
-        // Returns full price if the Client has no rules
+        // Full price if the Client has no rules
         const priceRule = rules.filter((prodRule: Rule) => prodRule.product === prod)
         if (priceRule.length <= 0) {
             total += productPrices[prod]
         }
 
-        // Returns discounted price if available
-        if (Object.prototype.hasOwnProperty.call(priceRule[0], "discountPrice")) {
-            total += priceRule[0].discountPrice!
-        }
-
-        // Returns product price until discount target condition is Met
+        // Product price until discount target condition is Met
         if (Object.prototype.hasOwnProperty.call(priceRule[0], "productDiscountTarget")) {
-            prodCount += 1
+            // prodCount += 1
 
-            if (prodCount !== priceRule[0].productDiscountTarget) {
-                total += productPrices[prod]
+            if (Object.prototype.hasOwnProperty.call(priceRule[0], "discountPrice")) {
+                if (prodTotal >= priceRule[0].productDiscountTarget!) {
+                    total += priceRule[0].discountPrice!
+                } else {
+                    total += productPrices[prod]
+                }
             }
         }
+
+        // Discounted price if available
+        // if (Object.prototype.hasOwnProperty.call(priceRule[0], "discountPrice")) {
+        //     total += priceRule[0].discountPrice!
+        // }
     })
 
     return total
